@@ -487,6 +487,7 @@ h3 {
     margin: 0.75rem 0.75rem 0.75rem 0;
     display: flex;
     flex-direction: column;
+    gap: 0.8rem;
     height: calc(100vh - 44px - 1.5rem);
     overflow-y: auto;
     padding: 1rem;
@@ -598,12 +599,13 @@ h3 {
 .click-stage {
     position: relative;
     min-height: 450px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0.7rem 0 1.4rem;
+    padding: 0.7rem 0 28px;
     overflow: hidden;
 }
 
@@ -859,7 +861,7 @@ h3 {
 
 .status-panel {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.9rem;
     margin-top: 0.95rem;
 }
@@ -2666,17 +2668,7 @@ h3 {
 .ad-slot--feed { margin: 8px 0 0; height: 90px; }
 .ad-slot-label { opacity: 0.4; }
 
-/* ── Click-stage & resource-bar overlap ─────────────── */
-.click-stage {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 28px;
-    width: 100%;
-}
-
+/* ── Resource-bar overlap ─────────────── */
 .resource-bar--overlap {
     position: relative;
     margin-top: -28px;
