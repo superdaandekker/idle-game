@@ -2098,14 +2098,11 @@ h3 {
 .subtab-buy-bar {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 0.15rem;
     flex-shrink: 0;
-    margin: 0.4rem 0.65rem 0.35rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--panel-border);
-    border-radius: 20px;
-    padding: 3px 8px;
+    margin: 0 0.65rem 0.2rem;
+    padding: 0 2px;
 }
 
 .subtab-buy-bar .amount-button {
