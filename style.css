@@ -2041,8 +2041,7 @@ h3 {
     gap: 4px;
     padding: 0.5rem 0.75rem 0.4rem;
     background: var(--panel);
-    border-bottom: 1px solid var(--panel-border);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0;
     flex-shrink: 0;
     flex-wrap: wrap;
     position: sticky;
@@ -2099,10 +2098,14 @@ h3 {
 .subtab-buy-bar {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: center;
+    gap: 0.15rem;
     flex-shrink: 0;
-    margin-top: 0;
-    margin-bottom: 0.4rem;
+    margin: 0.4rem 0.65rem 0.35rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    padding: 3px 8px;
 }
 
 .subtab-buy-bar .amount-button {
