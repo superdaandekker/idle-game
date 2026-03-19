@@ -333,6 +333,7 @@ const elements = {
     prestigeNextDisplay: document.getElementById("prestige-next-display"),
     prestigeUpgradesList: document.getElementById("prestige-upgrades-list"),
     boostStatusDisplay: document.getElementById("boost-status-display"),
+    comboBonusDisplay: document.getElementById("combo-bonus-display"),
     eventBanner: document.getElementById("event-banner"),
     eventTitle: document.getElementById("event-title"),
     eventDescription: document.getElementById("event-description"),
@@ -367,6 +368,7 @@ const elements = {
 let activeNavDropdown = null;
 let passiveFeedbackBuffer = 0;
 let lastPassiveFeedbackTime = Date.now();
+let passiveShopRefreshTick = 0;
 let lastMilestoneValue = 0;
 const animatedValues = {};
 
@@ -1089,6 +1091,7 @@ function updateStats(options = {}) {
     elements.boostStatusDisplay.textContent = Date.now() < game.boostEndTime
         ? `Boost live for ${formatDuration((game.boostEndTime - Date.now()) / 1000)}`
         : "No boost active";
+    if (elements.comboBonusDisplay) elements.comboBonusDisplay.textContent = "x1.0";
     const dailyBaseText = isDailyRewardReady() ? "Claim Daily Reward" : "Daily Reward Claimed";
     const streakSuffix = ` (Day ${Math.max(1, game.dailyClaimStreak + (isDailyRewardReady() ? 1 : 0))}/5)`;
     elements.dailyRewardButton.textContent = `${dailyBaseText}${streakSuffix}`;
@@ -1373,7 +1376,6 @@ function applyOfflineProgress(lastTickTime) {
 
 function exportSave() {
     try {
-        setActiveTab("settings");
         const exportText = JSON.stringify(getSaveData());
         elements.saveTextarea.value = exportText;
         elements.saveTextarea.focus();
@@ -1386,7 +1388,6 @@ function exportSave() {
 }
 
 function importSave() {
-    setActiveTab("settings");
     const rawText = elements.saveTextarea.value.trim();
     if (!rawText) {
         showToast("Paste a save into the text box first.", "warning");
@@ -1433,7 +1434,6 @@ function copyExportText() {
 }
 
 function clearSaveText() {
-    setActiveTab("settings");
     elements.saveTextarea.value = "";
     showToast("Save text cleared.", "info");
 }
@@ -1556,7 +1556,7 @@ function closeNavDropdown() {
 }
 
 function setActiveTab(tabName) {
-    if (tabName === "shop" || !["progress", "achievements", "prestige", "settings"].includes(tabName)) {
+    if (tabName === "shop" || !["progress", "achievements", "settings"].includes(tabName)) {
         closeNavDropdown();
         return;
     }
@@ -1621,20 +1621,30 @@ function addFeedItem(message, type, duration) {
 function openEventModal(event) {
     const isTax = event.id === "tax-audit";
     const type = isTax ? "event-negative" : "event";
+
+    // Avoid duplicate feed entries for the same event
+    const existing = document.querySelector(`[data-event-id="${event.id}"]`);
+    if (existing) {
+        const cd = existing.querySelector(".feed-countdown");
+        if (cd) cd.textContent = `Active for ${formatDuration(event.duration)}`;
+        return;
+    }
+
     const item = addFeedItem(
         `<div class="feed-item-title">${event.name}</div>` +
         `<div class="feed-item-sub">${event.description} ${getEventEffectText(event)}.</div>` +
-        `<div class="feed-countdown" id="event-feed-countdown">Active for ${formatDuration(event.duration)}</div>`,
+        `<div class="feed-countdown">Active for ${formatDuration(event.duration)}</div>`,
         type, 0
     );
     if (item) {
+        item.dataset.eventId = event.id;
         let remaining = 10;
-        const cd = item.querySelector("#event-feed-countdown");
+        const cd = item.querySelector(".feed-countdown");
         const tick = window.setInterval(() => {
             remaining--;
             if (cd) cd.textContent = remaining > 0
-                ? `Event start over ${remaining}s`
-                : `Event actief — ${formatDuration(event.duration)}`;
+                ? `Event starts in ${remaining}s`
+                : `Event active — ${formatDuration(event.duration)}`;
             if (remaining <= 0) window.clearInterval(tick);
         }, 1000);
     }
@@ -1709,6 +1719,7 @@ function updateEventBanner() {
     if (currentEvent.id === "calm-market") {
         elements.eventBanner.hidden = true;
         elements.eventBanner.classList.remove("event-negative");
+        if (elements.skipEventButton) elements.skipEventButton.hidden = true;
         return;
     }
 
@@ -1855,6 +1866,13 @@ function passiveIncomeLoop() {
         elements.saveStatus.textContent = getSaveStatusText();
         updateEventBanner();
     }
+
+    // Refresh shop card states every ~2s so buy buttons go green without tab switch
+    passiveShopRefreshTick++;
+    if (passiveShopRefreshTick >= 20) {
+        passiveShopRefreshTick = 0;
+        renderSubTab(game.activeSubTab);
+    }
 }
 
 function handleUpgradeClick(event) {
@@ -1910,7 +1928,7 @@ function bindEvents() {
             if (buyAmtBtn) { setBuyAmount(buyAmtBtn.dataset.buyAmount); return; }
 
             const adBtn = e.target.closest("[data-ad-type]");
-            if (adBtn && !adBtn.disabled) { openAdModal(adBtn.dataset.adType); return; }
+            if (adBtn) { e.stopPropagation(); if (!adBtn.disabled) openAdModal(adBtn.dataset.adType); return; }
 
             const buildingBtn = e.target.closest("[data-building-id]");
             if (buildingBtn && !buildingBtn.disabled) {

@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const PORT = 3000;
-const ROOT = path.join(__dirname, "idle-game-main");
+const ROOT = __dirname;
 
 const MIME = {
     ".html": "text/html",
