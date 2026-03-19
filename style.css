@@ -2671,7 +2671,7 @@ h3 {
 /* ── Resource-bar overlap ─────────────── */
 .resource-bar--overlap {
     position: relative;
-    margin-top: -28px;
+    margin-top: -80px;
     z-index: 2;
     background: var(--bg);
     border-radius: var(--radius);
