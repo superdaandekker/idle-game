@@ -432,22 +432,34 @@ h3 {
 
 .game-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(340px, 400px) minmax(280px, 320px);
-    gap: 0.8rem;
-    align-items: start;
-}
-
-.click-panel,
-.tabs-panel,
-.feed-panel {
-    padding: 1rem;
+    grid-template-columns: 320px minmax(0, 1fr) 280px;
+    gap: 0;
+    height: calc(100vh - 44px);
+    align-items: stretch;
 }
 
 .tabs-panel {
-    max-height: calc(100vh - 32px);
+    background: var(--panel);
+    border: 0.5px solid var(--panel-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+    margin: 0.75rem 0 0.75rem 0.75rem;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    height: calc(100vh - 44px - 1.5rem);
+    overflow-y: auto;
+}
+
+.click-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem 1rem;
+    height: calc(100vh - 44px);
+    overflow-y: auto;
+    background: none;
+    border-right: 0.5px solid var(--panel-border);
+    box-shadow: none;
 }
 
 .tab-panel.active {
@@ -468,13 +480,16 @@ h3 {
 }
 
 .feed-panel {
+    background: var(--panel);
+    border: 0.5px solid var(--panel-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+    margin: 0.75rem 0.75rem 0.75rem 0;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    min-height: 400px;
-    max-height: 90vh;
-    position: sticky;
-    top: 0.75rem;
+    height: calc(100vh - 44px - 1.5rem);
+    overflow-y: auto;
+    padding: 1rem;
 }
 
 .feed-list {
@@ -625,6 +640,8 @@ h3 {
     border-radius: 50%;
     cursor: pointer;
     color: #2d1800;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
     background:
         radial-gradient(circle at 32% 28%, #ffe99a 0%, #f5c842 40%, #c8900a 100%);
     box-shadow:
@@ -638,6 +655,8 @@ h3 {
     transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
     animation: tap-breathe 2.8s ease-in-out infinite;
 }
+.tap-button:focus { outline: none; }
+.tap-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 .tap-coin-symbol {
     font-size: clamp(4rem, 10vw, 6rem);
@@ -2025,25 +2044,31 @@ h3 {
 /* ── Shop sub-tabs ─────────────────────────────────────────────────── */
 .shop-subtab-bar {
     display: flex;
-    gap: 0.25rem;
-    padding: 0.5rem 0.75rem 0;
-    background: rgba(255,255,255,0.03);
+    gap: 4px;
+    padding: 0.5rem 0.75rem 0.4rem;
+    background: var(--panel);
     border-bottom: 1px solid var(--panel-border);
+    margin-bottom: 0.4rem;
     flex-shrink: 0;
+    flex-wrap: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .shop-subtab-button {
     flex: 1;
-    padding: 0.45rem 0.5rem;
-    font-size: 0.78rem;
+    padding: 5px 10px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.03em;
-    border: 1px solid transparent;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
     background: transparent;
     color: var(--muted);
     cursor: pointer;
-    transition: background var(--transition), color var(--transition), border-color var(--transition);
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
 }
 
 .shop-subtab-button:hover {
@@ -2052,10 +2077,10 @@ h3 {
 }
 
 .shop-subtab-button.active {
-    background: var(--panel-strong);
+    background: var(--accent-soft);
     color: var(--accent);
-    border-color: var(--panel-border);
-    border-bottom-color: transparent;
+    border-color: transparent;
+    font-weight: 600;
 }
 
 .subtab-content {
@@ -2314,38 +2339,6 @@ h3 {
 .buy-button--sm:hover { background: rgba(84,212,170,0.25); }
 .buy-button--sm:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ── Shop sub-tabs (spec override, mapped to project vars) ── */
-.shop-subtab-bar {
-    display: flex;
-    gap: 4px;
-    padding: 0 0 0.4rem;
-    border-bottom: 1px solid var(--panel-border);
-    margin-bottom: 0.4rem;
-    flex-wrap: wrap;
-}
-
-.shop-subtab-button {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    border: 1px solid var(--panel-border);
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-}
-
-.shop-subtab-button:hover {
-    background: var(--panel-soft);
-    color: var(--text);
-}
-
-.shop-subtab-button.active {
-    background: var(--accent-soft);
-    color: var(--accent);
-    border-color: transparent;
-    font-weight: 500;
-}
 
 .subtab-buy-bar {
     margin-bottom: 0.75rem;
@@ -2643,55 +2636,12 @@ h3 {
     color: var(--text);
 }
 
-/* ── Page shell + grid override ─────────────────────── */
+/* ── Page shell ──────────────────────────────────────── */
 .page-shell {
     width: 100%;
     max-width: 100%;
     padding: 0;
     margin: 0;
-}
-
-.game-grid {
-    display: grid;
-    grid-template-columns: 340px 1fr 300px;
-    gap: 0;
-    height: calc(100vh - 44px);
-    align-items: stretch;
-}
-
-.tabs-panel {
-    grid-column: 1;
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0;
-    border-right: 0.5px solid var(--panel-border);
-    border-top: none;
-    border-bottom: none;
-    border-left: none;
-}
-
-.click-panel {
-    grid-column: 2;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1.5rem 1rem;
-    overflow-y: auto;
-    border-radius: 0;
-    border-right: 0.5px solid var(--panel-border);
-}
-
-.feed-panel {
-    grid-column: 3;
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0;
-    min-height: unset;
 }
 
 .ad-banner {
@@ -2774,55 +2724,18 @@ h3 {
 .ach-tier--gold    { background: #ffd700; }
 .ach-tier--platinum { background: #b9f2ff; }
 
-/* ── Feedback Ronde 2 fixes ──────────────────────────── */
+/* ── UI fixes ────────────────────────────────────────── */
 
-/* B1: Verberg click-ring en tap-button-shine */
-.click-ring, .tap-button-shine { display: none !important; }
+/* Verberg click-ring en tap-button-shine */
+.click-ring, .tap-button-shine { display: none; }
 
-/* B2: Click-panel los op pagina — geen tegel-achtergrond */
-.click-panel {
-    background: none !important;
-    border-left: none !important;
-    border-right: 0.5px solid var(--panel-border) !important;
-    border-top: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* B3: Resource-balk overlapt onderkant clicker */
-.click-stage { padding-bottom: 160px !important; }
-.resource-bar--overlap { margin-top: -160px !important; }
-
-/* B4: Gelijke hoogte kolommen */
-.click-panel { height: 100% !important; }
-.tabs-panel { height: calc(100vh - 44px - 1.5rem) !important; }
-.feed-panel { height: calc(100vh - 44px - 1.5rem) !important; }
-
-/* B5: Achievements nav-knop */
+/* Achievements nav-knop */
 .nav-button--achievements {
     margin-left: 8px;
     font-size: 16px;
     padding: 4px 8px;
     border-radius: 50%;
     line-height: 1;
-}
-
-/* B6: Tabs-panel als tegel */
-.tabs-panel {
-    background: var(--panel) !important;
-    border: 0.5px solid var(--panel-border) !important;
-    border-radius: 16px !important;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22) !important;
-    margin: 0.75rem 0 0.75rem 0.75rem !important;
-}
-
-/* Feed-panel als tegel */
-.feed-panel {
-    background: var(--panel) !important;
-    border: 0.5px solid var(--panel-border) !important;
-    border-radius: 16px !important;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22) !important;
-    margin: 0.75rem 0.75rem 0.75rem 0 !important;
 }
 
 /* ── Nav Dropdown Overlay ────────────────────────────── */
@@ -2944,48 +2857,6 @@ h3 {
     display: none;
 }
 
-/* ── BUG FIXES RONDE 3 ───────────────────────────────── */
-
-/* BUG 5 — Subtab balk sticky */
-.shop-subtab-bar {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 10 !important;
-    background: var(--panel) !important;
-}
 #subtab-content {
     overflow-y: auto;
 }
-
-/* BUG 7 — Skip knop verborgen bij geen event (via JS, maar ook CSS fallback) */
-
-/* BUG 8 — Rode rand bij klikken */
-.tap-button {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-}
-.tap-button:focus { outline: none !important; }
-.tap-button:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 4px !important; }
-body:focus, .page-shell:focus, .click-panel:focus, .game-grid:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-/* BUG 9 — Premium op eigen rij */
-.shop-subtab-bar {
-    flex-wrap: nowrap !important;
-}
-.shop-subtab-button {
-    white-space: nowrap !important;
-    padding: 5px 10px !important;
-    font-size: 12px !important;
-}
-
-/* BUG 13 — Clicker kolom te breed */
-.game-grid {
-    grid-template-columns: 320px minmax(300px, 520px) 280px !important;
-}
-
-/* BUG 14 — Resource balk overlap */
-.click-stage { padding-bottom: 32px !important; }
-.resource-bar--overlap { margin-top: -32px !important; }
