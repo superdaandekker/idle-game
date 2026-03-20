@@ -78,77 +78,82 @@ const MILESTONE_VALUES = [100, 1000, 10000, 100000, 1000000, 10000000, 100000000
 const BUILDING_DEFINITIONS = [
     {
         id: "lemonade-stand",
-        name: "Limonade Kraam",
-        description: "Je eerste stap naar een financieel imperium.",
+        name: "Lemonade Stand",
+        description: "Your first step toward a financial empire.",
         icon: "🍋",
         baseCost: 50,
         costScale: 1.15,
         baseIncome: 0.1,
         unlockAt: 0,
         upgrades: [
-            { id: "ls-cup",      name: "Betere bekers",      cost: 200,    effect: 2, desc: "Verdubbel de omzet van elke Limonade Kraam." },
-            { id: "ls-recipe",   name: "Geheim recept",      cost: 1500,   effect: 3, desc: "Drievoudige omzet door een legendarisch recept." },
-            { id: "ls-franchise",name: "Meerdere locaties",  cost: 8000,   effect: 5, desc: "Vijfvoudige omzet — je staat overal." },
+            { id: "ls-cup",      name: "Better Cups",        cost: 200,    effect: 2, desc: "Double the revenue of every Lemonade Stand." },
+            { id: "ls-recipe",   name: "Secret Recipe",      cost: 1500,   effect: 3, desc: "Triple revenue with a legendary recipe." },
+            { id: "ls-franchise",name: "Multiple Locations", cost: 8000,   effect: 5, desc: "5× revenue — you're everywhere." },
+            { id: "ls-empire",   name: "Lemonade Empire",    cost: 50000,  effect: 10, desc: "10× revenue — you dominate the market." },
         ]
     },
     {
         id: "corner-shop",
-        name: "Hoekwinkel",
-        description: "Een kleine buurtwinkel met vaste klanten.",
+        name: "Corner Shop",
+        description: "A small neighborhood shop with loyal customers.",
         icon: "🏪",
         baseCost: 500,
         costScale: 1.18,
         baseIncome: 1.2,
         unlockAt: 300,
         upgrades: [
-            { id: "cs-stock",   name: "Meer voorraad",     cost: 2000,   effect: 2, desc: "Dubbel zo veel producten, dubbel zo veel inkomsten." },
-            { id: "cs-loyalty", name: "Loyaliteitskaart",  cost: 12000,  effect: 3, desc: "Vaste klanten zorgen voor 3× meer omzet." },
-            { id: "cs-chain",   name: "Winkelketen",       cost: 60000,  effect: 5, desc: "Schaal op naar een keten: 5× inkomsten." },
+            { id: "cs-stock",   name: "More Stock",       cost: 2000,   effect: 2, desc: "Twice the products, twice the income." },
+            { id: "cs-loyalty", name: "Loyalty Card",     cost: 12000,  effect: 3, desc: "Loyal customers generate 3× more revenue." },
+            { id: "cs-chain",   name: "Store Chain",      cost: 60000,  effect: 5, desc: "Scale up to a chain: 5× income." },
+            { id: "cs-empire",  name: "Shop Empire",      cost: 350000, effect: 10, desc: "An empire of shops: 10× income." },
         ]
     },
     {
         id: "restaurant",
         name: "Restaurant",
-        description: "Gasten komen voor de sfeer, blijven voor het eten.",
+        description: "Guests come for the atmosphere, stay for the food.",
         icon: "🍽️",
         baseCost: 4000,
         costScale: 1.21,
         baseIncome: 8,
         unlockAt: 2500,
         upgrades: [
-            { id: "rs-menu",  name: "Uitgebreid menu",  cost: 15000,  effect: 2, desc: "Meer gerechten, meer bestellingen: 2×." },
-            { id: "rs-chef",  name: "Sterrenchef",      cost: 80000,  effect: 3, desc: "Een Michelin-ster trekt 3× zoveel gasten." },
-            { id: "rs-brand", name: "Restaurantketen",  cost: 400000, effect: 5, desc: "Jouw naam op elke straathoek: 5×." },
+            { id: "rs-menu",   name: "Expanded Menu",      cost: 15000,    effect: 2, desc: "More dishes, more orders: 2×." },
+            { id: "rs-chef",   name: "Star Chef",           cost: 80000,    effect: 3, desc: "A Michelin star attracts 3× as many guests." },
+            { id: "rs-brand",  name: "Restaurant Chain",    cost: 400000,   effect: 5, desc: "Your name on every street corner: 5×." },
+            { id: "rs-empire", name: "Restaurant Empire",   cost: 2500000,  effect: 10, desc: "The ultimate restaurant empire: 10×." },
         ]
     },
     {
         id: "franchise",
         name: "Franchise",
-        description: "Anderen werken voor jou. Geld stroomt vanzelf.",
+        description: "Others work for you. Money flows on its own.",
         icon: "🏬",
         baseCost: 30000,
         costScale: 1.23,
         baseIncome: 50,
         unlockAt: 18000,
         upgrades: [
-            { id: "fr-brand",  name: "Sterk merk",      cost: 120000,  effect: 2, desc: "Naamsbekendheid verdubbelt je franchise-inkomsten." },
-            { id: "fr-supply", name: "Centrale inkoop",  cost: 600000,  effect: 3, desc: "Schaalvoordeel: 3× rendement." },
-            { id: "fr-global", name: "Wereldwijd",       cost: 3000000, effect: 5, desc: "Internationaal uitrollen: 5× omzet." },
+            { id: "fr-brand",  name: "Strong Brand",       cost: 120000,   effect: 2, desc: "Brand recognition doubles your franchise income." },
+            { id: "fr-supply", name: "Central Purchasing", cost: 600000,   effect: 3, desc: "Economies of scale: 3× returns." },
+            { id: "fr-global", name: "Worldwide",          cost: 3000000,  effect: 5, desc: "International rollout: 5× revenue." },
+            { id: "fr-empire", name: "Franchise Empire",   cost: 20000000, effect: 10, desc: "The ultimate franchise network: 10× revenue." },
         ]
     },
     {
         id: "investment-bank",
-        name: "Investeringsbank",
-        description: "Geld dat geld maakt, op industriële schaal.",
+        name: "Investment Bank",
+        description: "Money that makes money, at industrial scale.",
         icon: "🏦",
         baseCost: 250000,
         costScale: 1.25,
         baseIncome: 400,
         unlockAt: 150000,
         upgrades: [
-            { id: "ib-algo",  name: "Handelsalgoritme",  cost: 1000000,  effect: 2, desc: "Geautomatiseerde handel: 2× rendement." },
-            { id: "ib-hedge", name: "Hedgefonds",        cost: 5000000,  effect: 3, desc: "Risicospreiding én 3× meer winst." },
-            { id: "ib-fed",   name: "Centrale bank",     cost: 25000000, effect: 5, desc: "Je bepaalt zelf de rente: 5× inkomsten." },
+            { id: "ib-algo",   name: "Trading Algorithm", cost: 1000000,   effect: 2, desc: "Automated trading: 2× returns." },
+            { id: "ib-hedge",  name: "Hedge Fund",        cost: 5000000,   effect: 3, desc: "Risk diversification and 3× more profit." },
+            { id: "ib-fed",    name: "Central Bank",      cost: 25000000,  effect: 5, desc: "You set the interest rate: 5× income." },
+            { id: "ib-global", name: "World Bank",        cost: 150000000, effect: 10, desc: "You control the world economy: 10×." },
         ]
     },
 ];
@@ -190,8 +195,8 @@ const UPGRADE_DEFINITIONS = [
     { id: "offline-relay", name: "Offline Relay", description: "A basic relay that keeps earning a share of your income while you're away.", baseCost: 2500, costScale: 1.35, effectType: "offline", effectValue: 0.15, badge: "+Offline", tag: "Offline", unlockAt: 1500 },
     { id: "offline-server", name: "Offline Server", description: "A dedicated server that maintains a larger portion of your passive income offline.", baseCost: 18000, costScale: 1.4, effectType: "offline", effectValue: 0.2, badge: "+Offline", tag: "Offline", unlockAt: 12000 },
     { id: "offline-vault", name: "Offline Vault", description: "A secure vault that maximises your offline earnings efficiency.", baseCost: 95000, costScale: 1.45, effectType: "offline", effectValue: 0.3, badge: "+Offline", tag: "Offline", unlockAt: 65000 },
-    { id: "data-bunker", name: "Data Bunker", description: "Een beveiligde bunker die 50% van je passief inkomen opslaat terwijl je weg bent.", baseCost: 500000, costScale: 1.5, effectType: "offline", effectValue: 0.5, badge: "+Offline", tag: "Offline", unlockAt: 350000 },
-    { id: "quantum-cloud", name: "Quantum Cloud", description: "Cloud-infrastructuur die je offline opbrengst tot het maximum brengt.", baseCost: 3000000, costScale: 1.55, effectType: "offline", effectValue: 0.8, badge: "+Offline", tag: "Offline", unlockAt: 2000000 }
+    { id: "data-bunker", name: "Data Bunker", description: "A secure bunker that stores 50% of your passive income while you're away.", baseCost: 500000, costScale: 1.5, effectType: "offline", effectValue: 0.5, badge: "+Offline", tag: "Offline", unlockAt: 350000 },
+    { id: "quantum-cloud", name: "Quantum Cloud", description: "Cloud infrastructure that maximizes your offline earnings.", baseCost: 3000000, costScale: 1.55, effectType: "offline", effectValue: 0.8, badge: "+Offline", tag: "Offline", unlockAt: 2000000 }
 ];
 
 const PRESTIGE_UPGRADE_DEFINITIONS = [
@@ -840,7 +845,6 @@ function clickMoney() {
     }, 120);
 
     createFloatingFeedback(`+$${formatNumber(earned)}`, "click");
-    createBurstFeedback();
     pulseStatCards();
     updateStats();
     if (checkAchievements()) {
@@ -1556,7 +1560,7 @@ function closeNavDropdown() {
 }
 
 function setActiveTab(tabName) {
-    if (tabName === "shop" || !["progress", "achievements", "settings"].includes(tabName)) {
+    if (tabName === "shop" || !["progress", "achievements", "settings", "prestige"].includes(tabName)) {
         closeNavDropdown();
         return;
     }
@@ -1614,7 +1618,7 @@ function addFeedItem(message, type, duration) {
     item.className = `feed-item type-${type}`;
     item.innerHTML = message;
     list.prepend(item);
-    while (list.children.length > 20) list.removeChild(list.lastChild);
+    while (list.children.length > 5) list.removeChild(list.lastChild);
     return item;
 }
 
@@ -1714,31 +1718,8 @@ function skipTaxAudit() {
 }
 
 function updateEventBanner() {
-    const now = Date.now();
-    const currentEvent = getCurrentEvent();
-    if (currentEvent.id === "calm-market") {
-        elements.eventBanner.hidden = true;
-        elements.eventBanner.classList.remove("event-negative");
-        if (elements.skipEventButton) elements.skipEventButton.hidden = true;
-        return;
-    }
-
-    const currentRemaining = Math.max(0, Math.floor((game.activeEventEndsAt - now) / 1000));
-    const isTaxAudit = currentEvent.id === "tax-audit";
-    elements.eventBanner.hidden = false;
-    elements.eventBanner.classList.toggle("event-negative", isTaxAudit);
-    elements.eventTitle.textContent = currentEvent.name;
-    elements.eventDescription.textContent = `${currentEvent.description} ${getEventEffectText(currentEvent)}.`;
-    elements.eventTimer.textContent = formatDuration(currentRemaining);
-
-    if (elements.skipEventButton) {
-        elements.skipEventButton.hidden = !isTaxAudit;
-        if (isTaxAudit) {
-            const cost = getTaxAuditSkipCost();
-            elements.skipEventButton.textContent = `Pay $${formatNumber(cost)} to skip`;
-            elements.skipEventButton.disabled = game.money < cost;
-        }
-    }
+    // Events only shown in activity feed — banner always hidden
+    if (elements.eventBanner) elements.eventBanner.hidden = true;
 }
 
 function claimDailyReward() {
@@ -1768,7 +1749,7 @@ function claimDailyReward() {
 
 function activateBoost() {
     if (Date.now() < game.boostEndTime) {
-        showToast("Boost is al actief.", "warning");
+        showToast("Boost is already active.", "warning");
         return;
     }
     game.boostMultiplier = 2;
@@ -1776,8 +1757,8 @@ function activateBoost() {
     recalculateDerivedStats();
     updateStats();
     saveGame(false);
-    addFeedItem(`<div class="feed-item-title">2x Boost geactiveerd</div><div class="feed-item-sub">45 seconden lang 2x meer verdienen</div>`, "event", 0);
-    showToast("Boost geactiveerd voor 45 seconden.", "success");
+    addFeedItem(`<div class="feed-item-title">2x Boost Activated</div><div class="feed-item-sub">Earn 2x more for 45 seconds</div>`, "event", 0);
+    showToast("Boost activated for 45 seconds.", "success");
 }
 
 function showToast(message, type = "info") {
@@ -1822,16 +1803,6 @@ function createMilestonePop(text) {
     window.setTimeout(() => {
         pop.remove();
     }, 1000);
-}
-
-function createBurstFeedback() {
-    const burst = document.createElement("span");
-    burst.className = "burst";
-    elements.burstFeedbackLayer.appendChild(burst);
-
-    window.setTimeout(() => {
-        burst.remove();
-    }, 500);
 }
 
 function passiveIncomeLoop() {
@@ -2248,12 +2219,17 @@ function renderBuildingShop(container) {
                     <div class="building-card-name">${bDef.name}</div>
                     <div class="building-card-desc">${bDef.description}</div>
                 </div>
-                <div class="building-card-owned-badge">
-                    <span class="mini-label">Owned</span>
-                    <strong>${owned}</strong>
+                <div class="building-card-badges">
+                    <div class="building-card-owned-badge">
+                        <span class="mini-label">Owned</span>
+                        <strong>${owned}</strong>
+                    </div>
+                    <div class="building-card-output-badge">
+                        <span class="mini-label">Output</span>
+                        <strong>$${formatNumber(totalOutput)}/s</strong>
+                    </div>
                 </div>
             </div>
-            <div class="building-card-output">Output: <strong>$${formatNumber(totalOutput)}/s</strong></div>
             <div class="building-card-footer">
                 <span class="building-card-cost">${costText}</span>
                 <button class="buy-button buy-button--building" type="button"
@@ -2339,16 +2315,16 @@ function renderPrestigeUpgrades(container) {
 
 function renderPremiumSubtab(container) {
     container.appendChild(createBuyAmountBar());
-    // Permanent (Gold)
-    const h4a = document.createElement("h4");
-    h4a.className = "prestige-shop-title";
-    h4a.textContent = "Permanent (Gold)";
-    container.appendChild(h4a);
-
-    const shardsInfo = document.createElement("div");
-    shardsInfo.className = "premium-shards-info";
-    shardsInfo.innerHTML = `<span class="mini-label">Available gold</span> <strong>${formatNumber(game.shards)}</strong>`;
-    container.appendChild(shardsInfo);
+    // Permanent (Gold) header + available gold badge in one row
+    const headerRow = document.createElement("div");
+    headerRow.className = "premium-header-row";
+    headerRow.innerHTML = `
+        <h4 class="prestige-shop-title">Permanent (Gold)</h4>
+        <div class="building-card-output-badge">
+            <span class="mini-label">Available</span>
+            <strong>${formatNumber(game.shards)}</strong>
+        </div>`;
+    container.appendChild(headerRow);
 
     game.prestigeUpgrades.forEach((upgrade) => {
         const canAfford = game.shards >= upgrade.currentCost;
@@ -2419,18 +2395,18 @@ function renderPremiumSubtab(container) {
 
 function openAdModal(adType) {
     pendingAdType = adType;
-    const titles = { "boost-2x": "2× Boost beschikbaar!", "boost-3x": "3× Boost beschikbaar!", "offline-turbo": "Offline Turbo beschikbaar!" };
+    const titles = { "boost-2x": "2× Boost Available!", "boost-3x": "3× Boost Available!", "offline-turbo": "Offline Turbo Available!" };
     const titleEl = document.getElementById("ad-modal-title");
-    if (titleEl) titleEl.textContent = titles[adType] || "Boost beschikbaar!";
+    if (titleEl) titleEl.textContent = titles[adType] || "Boost Available!";
     elements.adModal.hidden = false;
     let secs = 5;
     elements.adCountdownDisplay.textContent = secs;
     elements.skipAdButton.disabled = true;
-    elements.skipAdButton.textContent = `Wacht... (${secs}s)`;
+    elements.skipAdButton.textContent = `Wait... (${secs}s)`;
     const iv = window.setInterval(() => {
         secs -= 1;
         elements.adCountdownDisplay.textContent = secs;
-        elements.skipAdButton.textContent = secs > 0 ? `Wacht... (${secs}s)` : "Claim Boost";
+        elements.skipAdButton.textContent = secs > 0 ? `Wait... (${secs}s)` : "Claim Boost";
         if (secs <= 0) {
             window.clearInterval(iv);
             elements.skipAdButton.disabled = false;
