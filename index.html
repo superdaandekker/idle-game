@@ -15,12 +15,13 @@
     </div>
 
     <header class="site-header">
-        <span class="site-logo">Money Tapper</span>
         <nav class="site-nav">
+            <button class="nav-button nav-button--achievements" data-tab="achievements" type="button" title="Achievements">🏆</button>
+            <button class="nav-button" data-tab="prestige" type="button">Prestige</button>
             <button class="nav-button" data-tab="progress" type="button">Progress</button>
             <button class="nav-button" data-tab="settings" type="button">Settings</button>
         </nav>
-        <button class="nav-button nav-button--achievements" data-tab="achievements" type="button" title="Achievements">🏆</button>
+        <span class="site-logo">Money Tapper</span>
     </header>
 
     <div class="page-shell">
@@ -146,22 +147,11 @@
             </section>
 
             <section class="click-panel" aria-label="Clicker">
-                <section class="event-banner card" id="event-banner" hidden>
-                    <div>
-                        <p class="eyebrow">Live Event</p>
-                        <h2 id="event-title">Calm Market</h2>
-                        <p class="panel-note" id="event-description">Your empire is stable and ready for the next opportunity.</p>
-                    </div>
-                    <div class="event-meta">
-                        <span class="mini-label">Ends in</span>
-                        <strong id="event-timer">0s</strong>
-                        <button id="skip-event-button" class="skip-event-button" type="button" hidden>Pay to skip</button>
-                    </div>
-                </section>
+
 
                 <div class="click-stage">
                     <button id="tap-button" class="tap-button" type="button" aria-label="Tap to earn money">
-                        <span class="tap-coin-symbol">$</span>
+                        <img src="coin2.png" alt="Coin" class="tap-coin-img" draggable="false">
                     </button>
                     <div id="floating-feedback-layer" class="floating-feedback-layer" aria-hidden="true"></div>
                     <div id="burst-feedback-layer" class="burst-feedback-layer" aria-hidden="true"></div>
@@ -206,7 +196,6 @@
                 <div class="panel-heading">
                     <div>
                         <h2>Activity</h2>
-                        <p class="panel-note">Events, purchases &amp; milestones.</p>
                     </div>
                     <span class="live-pill">Live</span>
                 </div>

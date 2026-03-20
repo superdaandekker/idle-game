@@ -69,6 +69,13 @@ Everything lives in three files. There is no bundler, transpiler, or package man
 - When adding UI elements, match the existing glass-morphism dark-theme aesthetic
 - Keep all logic in `script.js`, all structure in `index.html`, all visuals in `style.css`
 
+## Layout & Visual Rules (STRICT)
+
+- **Never change layout or visuals** unless the user explicitly asks for it
+- **Only touch the exact element** the user names — do not adjust surrounding elements, spacing, sizing, or styling as a side effect
+- **If it is unclear which element the user means**, ask before making any change — do not guess
+- **No unsolicited "improvements"** to CSS, HTML structure, or visual design — even if something looks off
+
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/pages.yml` which deploys to GitHub Pages automatically. The `auto-upload.ps1` script handles quick commits:
